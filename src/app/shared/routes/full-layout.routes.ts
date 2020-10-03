@@ -6,5 +6,9 @@ export const Full_ROUTES: Routes = [
   {
     path: 'page',
     loadChildren: () => import('../../page/page.module').then(m => m.PageModule)
-  }
+  },
+  {
+    path: 'maps',
+    loadChildren: () => import('../../maps/maps.module').then(m => m.MapsModule)
+  },
 ];

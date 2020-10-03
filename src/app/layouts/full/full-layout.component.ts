@@ -193,7 +193,7 @@ export class FullLayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!this.config.layout.sidebar.backgroundColor) {
       this.bgColor = this.customizerService.light_dark_colors[7].code;
     } else {
-      this.bgColor = this.config.layout.sidebar.backgroundColor;
+      this.bgColor = this.customizerService.light_dark_colors[7].code;
     }
 
     //toggle side menu

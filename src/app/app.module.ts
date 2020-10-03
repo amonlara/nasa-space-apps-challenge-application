@@ -69,7 +69,7 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     AgmCoreModule.forRoot({
-      apiKey: "YOUR_GOOGLE_MAP_API_KEY"
+      apiKey: "AIzaSyBaxn9JnF-SAQvWt0eYLlVP0Ue9bOSrNPg"
     }),
     PerfectScrollbarModule
   ],
