@@ -100,7 +100,7 @@ export class VerticalMenuComponent implements OnInit, AfterViewInit, OnDestroy {
       this.logoUrl = 'assets/img/skope_logo.png';
     }
     else {
-      this.logoUrl = 'assets/img/skope_logo.png';
+      this.logoUrl = 'assets/img/skope_logo_white.png';
     }
 
     if(this.config.layout.sidebar.collapsed) {

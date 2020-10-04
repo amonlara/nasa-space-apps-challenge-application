@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   selectedLanguageFlag = "./assets/img/flags/us.png";
   toggleClass = "ft-maximize";
   placement = "bottom-right";
-  logoUrl = 'assets/img/logo.png';
+  logoUrl = 'assets/img/skope_logo_white.png';
   menuPosition = 'Side';
   isSmallScreen = false;
   protected innerWidth: any;
@@ -112,10 +112,10 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     if (this.config.layout.variant === "Light") {
-      this.logoUrl = 'assets/img/logo-dark.png';
+      this.logoUrl = 'assets/img/skope_logo.png';
     }
     else {
-      this.logoUrl = 'assets/img/logo.png';
+      this.logoUrl = 'assets/img/skope_logo_white.png';
     }
 
     if (this.config.layout.variant === "Transparent") {
