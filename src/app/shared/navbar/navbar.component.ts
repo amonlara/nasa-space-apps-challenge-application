@@ -8,6 +8,7 @@ import { CustomizerService } from '../services/customizer.service';
 import { FormControl } from '@angular/forms';
 import { LISTITEMS } from '../data/template-search';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-navbar",
@@ -46,6 +47,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   public config: any = {};
 
   constructor(public translate: TranslateService,
+    private modalService: NgbModal,
     private layoutService: LayoutService,
     private router: Router,
     private configService: ConfigService, private cdr: ChangeDetectorRef) {
@@ -125,6 +127,11 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
       this.transparentBGClass = "";
     }
 
+  }
+
+   // Open modal with dark section
+   openModal(customContent) {
+    this.modalService.open(customContent, { windowClass: 'dark-modal' });
   }
 
   onSearchKey(event: any) {
@@ -224,5 +231,9 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   toggleSidebar() {
     this.layoutService.toggleSidebarSmallScreen(this.hideSidebar);
+  }
+
+  create(){
+    
   }
 }

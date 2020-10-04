@@ -1,7 +1,7 @@
 <!--Fullscreen Map Starts-->
 <section id="fullscreenMap" class="mb-3">
     <div class="row">
-        <agm-map (mapClick)="mapClick($event)" [latitude]="lat" [longitude]="lng" style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px;
+        <agm-map (mapClick)="mapClick($event)" [latitude]="lat" [zoom]="7" [longitude]="lng" style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px;
         background-color: rgb(229, 227, 223);" [styles]="styleDark">
         
 
@@ -19,11 +19,14 @@
             </agm-marker>
             <agm-circle *ngFor="let marker of markers" [label]="marker.title" [latitude]="marker.lat" [longitude]="marker.long" [radius]="3000" fillColor="green"></agm-circle>
 
+
+            <agm-circle *ngFor="let fireInpe of fires"  [latitude]="fireInpe.lat" [longitude]="fireInpe.long" [radius]="6000" fillColor="red"></agm-circle>
+
             <agm-circle *ngIf="showFire"  [latitude]="fire.lat" [longitude]="fire.long" [radius]="3000" fillColor="red"></agm-circle>
-            <!-- <agm-marker *ngIf="showFire"  [latitude]="fire.lat" [longitude]="fire.long"></agm-marker> -->
 
 
         </agm-map>
+       
     </div>
 </section>
 <!--Fullscreen Map Ends-->

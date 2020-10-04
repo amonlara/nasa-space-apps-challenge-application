@@ -1,10 +1,13 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActingService } from 'app/shared/services/acting.service';
+import { FireService } from 'app/shared/services/fire.service';
+
 import { Acting } from 'app/shared/model/acting';
 import { Marker } from 'app/shared/model/marker';
 import { Statistical } from 'app/shared/model/statistical';
 import { Fire } from 'app/shared/model/fire';
 import { FirebaseApp } from '@angular/fire';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -15,6 +18,7 @@ import { FirebaseApp } from '@angular/fire';
 
 export class FullScreenMapComponent implements OnInit{
   markers: Array<Marker> = new Array<Marker>();
+  fires: Array<Marker> = new Array<Marker>();
 
         public styleDark = [
             { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
@@ -107,10 +111,37 @@ export class FullScreenMapComponent implements OnInit{
    fire: Fire;
 
     // Google map lat-long
-    lat: number = -23.013538;
-    lng: number =  -43.297337;
+    lat: number = -5.014438137848342;
+    lng: number =  -64.56025877351831;
 
     ngOnInit(){
+
+
+      this.fireService.getAll().then(resp => {
+        // console.log("resp fire inpe", resp);
+
+        resp.forEach(element => {
+          
+          var coordinatesPoint = element.geometry.coordinates;
+
+          coordinatesPoint.forEach( coordinatePoint => {
+
+            var marker = new Marker();
+            marker.lat = coordinatePoint[1];
+            marker.long = coordinatePoint[0];
+
+            // console.log('marker', marker);  
+
+            this.fires.push(marker);
+
+          });
+
+        });
+        this.cdRef.detectChanges();
+
+      });
+
+
 
       this.actingService.getAll().then( resp => {
         this.actings = resp;
@@ -128,15 +159,16 @@ export class FullScreenMapComponent implements OnInit{
             marker.id = acting.id;
             marker.title = acting.name;
 
-            console.log(marker);
+            // console.log(marker);
 
   
             this.markers.push(marker);
-
+            
           });
-
+          
         });
-
+        
+        this.cdRef.detectChanges();
 
       });
 
@@ -144,6 +176,10 @@ export class FullScreenMapComponent implements OnInit{
 
     mapClick(event: any) {
       console.log('mapClick', event);
+
+      
+
+      // this.openModal(template);
     }
 
     markerClick(event: any) {
@@ -171,8 +207,11 @@ export class FullScreenMapComponent implements OnInit{
 
 
     constructor(private actingService: ActingService,
+      private fireService: FireService,
       private cdRef: ChangeDetectorRef){
 
     }
+
+   
    
 }
