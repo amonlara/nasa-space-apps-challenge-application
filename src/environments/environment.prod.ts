@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  apiURL: 'https://smoke-jumpers-api.herokuapp.com'
+
 };

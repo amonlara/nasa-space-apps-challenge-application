@@ -1,9 +1,27 @@
 <!--Fullscreen Map Starts-->
 <section id="fullscreenMap" class="mb-3">
     <div class="row">
-        <agm-map [latitude]="lat" [longitude]="lng" style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px;
-        background-color: rgb(229, 227, 223);" >
-            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        <agm-map (mapClick)="mapClick($event)" [latitude]="lat" [longitude]="lng" style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px;
+        background-color: rgb(229, 227, 223);" [styles]="styleDark">
+        
+
+        
+        <agm-marker *ngFor="let marker of markers" (markerClick)="markerClick($event)" [title]="marker.id" [latitude]="marker.lat" [longitude]="marker.long">
+            
+            <agm-info-window  [disableAutoPan]="true" >
+              
+               Distancia :  {{statisticalShow?.distancia}}
+               Projecao :  {{statisticalShow?.projecao}}
+               ranking :  {{statisticalShow?.ranking}}
+
+            </agm-info-window>
+
+            </agm-marker>
+            <agm-circle *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.long" [radius]="622222" fillColor="green"></agm-circle>
+
+            <agm-circle *ngIf="showFire"  [latitude]="fire.lat" [longitude]="fire.long" [radius]="222222" fillColor="red"></agm-circle>
+
+
         </agm-map>
     </div>
 </section>
