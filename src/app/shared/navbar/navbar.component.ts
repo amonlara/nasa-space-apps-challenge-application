@@ -53,6 +53,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(public translate: TranslateService,
     private actingService: ActingService,
+    private cdRef: ChangeDetectorRef,
     private modalService: NgbModal,
     private layoutService: LayoutService,
     private router: Router,
@@ -267,10 +268,10 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.actingService.save(actingToSave).then( resp => {
       console.log('actingToSave resp', resp);
+      this.acting = new Acting();
     });
 
 
-    this.acting = new Acting();
 
   }
 }
