@@ -15,6 +15,7 @@
         </li>
         <li class="nav-item mr-2 d-none d-lg-block">
           <ng-template #customContent let-c="close" let-d="dismiss">
+            <form  #f="ngForm" autocomplete="off" (ngSubmit)="create(f); d('Cross click')">
             <div class="modal-header">
               <h4 class="modal-title">Adicionar Ativo</h4>
               <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -31,42 +32,44 @@
                      
                       <div class="card-content">
                         <div class="card-body">
-                          <div class="row">
-                            <div class="col-md-6">
-                              <fieldset class="form-group">
-                                <label for="basicInput">Nome do Ativo</label>
-                                <input type="text" class="form-control" id="nome"  placeholder="Nome">
-                              </fieldset>
+
+                            <div class="row">
+                              <div class="col-md-6">
+                                <fieldset class="form-group">
+                                  <label for="basicInput">Nome do Ativo</label>
+                                  <input type="text" class="form-control" id="nome"  placeholder="Nome" name="name" [(ngModel)]="acting.name">
+                                </fieldset>
+                              </div>
                             </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-6">
-                              <fieldset class="form-group">
-                                <label for="basicInput">Latitude</label>
-                                <input type="text" class="form-control" id="lat"  placeholder="Latitude">
-                              </fieldset>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <fieldset class="form-group">
+                                  <label for="basicInput">Latitude</label>
+                                  <input type="text" class="form-control" id="lat" name="lat" [(ngModel)]="acting.lat"  placeholder="Latitude">
+                                </fieldset>
+                              </div>
                             </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-6">
-                              <fieldset class="form-group">
-                                <label for="basicInput">Longitude</label>
-                                <input type="text" class="form-control" id="long"  placeholder="Longitude">
-                              </fieldset>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <fieldset class="form-group">
+                                  <label for="basicInput">Longitude</label>
+                                  <input type="text" class="form-control" id="long" name="lng" [(ngModel)]="acting.lng"  placeholder="Longitude">
+                                </fieldset>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </section>
-              
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" (click)="create()">Criar</button>
-            </div>
+                </section>
+                
+                
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary">Criar</button>
+              </div>
+            </form>
           </ng-template>
           <a  href="javascript:;" (click)="openModal(customContent)" >Adicionar Ativo</a>
         </li>

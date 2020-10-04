@@ -1,4 +1,4 @@
-export interface Point{
+export class Point{
     type: String;
     coordinates: Array<any>;
 }

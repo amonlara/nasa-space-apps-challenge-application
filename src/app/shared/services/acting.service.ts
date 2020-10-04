@@ -10,6 +10,14 @@ export class ActingService {
 
   constructor(private httpClient: HttpClient) { }
 
+  save(acting: Acting): Promise<Acting> {
+    return this.httpClient.post<Acting>(`${environment.apiURL}/actings`, acting
+    ).toPromise().then( resp => {
+      return resp;
+    } );
+  }
+
+
   getAll(): Promise<Array<Acting>> {
       return this.httpClient.get<Array<Acting>>(`${environment.apiURL}/actings`
     ).toPromise().then( resp => {
@@ -18,9 +26,9 @@ export class ActingService {
   }
 
   getActingById(id: number): Promise<Acting> {
-    return this.httpClient.get<Acting>(`${environment.apiURL}/actings/${id}`
-  ).toPromise().then( resp => {
-    return resp;
-  } );
-}
+      return this.httpClient.get<Acting>(`${environment.apiURL}/actings/${id}`
+    ).toPromise().then( resp => {
+      return resp;
+    } );
+  }
 }

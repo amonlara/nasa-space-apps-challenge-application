@@ -9,6 +9,10 @@ import { FormControl } from '@angular/forms';
 import { LISTITEMS } from '../data/template-search';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Acting } from '../model/acting';
+import { Point } from '../model/point';
+import { Agent } from '../model/agent';
+import { ActingService } from '../services/acting.service';
 
 @Component({
   selector: "app-navbar",
@@ -31,6 +35,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   public isCollapsed = true;
   layoutSub: Subscription;
   configSub: Subscription;
+  acting = new Acting();
 
   @ViewChild('search') searchElement: ElementRef;
   @ViewChildren('searchResults') searchResults: QueryList<any>;
@@ -47,6 +52,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   public config: any = {};
 
   constructor(public translate: TranslateService,
+    private actingService: ActingService,
     private modalService: NgbModal,
     private layoutService: LayoutService,
     private router: Router,
@@ -233,7 +239,38 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.layoutService.toggleSidebarSmallScreen(this.hideSidebar);
   }
 
-  create(){
-    
+  create(form: FormControl){
+    console.log('acting', this.acting);
+
+    //salvar na API
+
+    var actingToSave = new Acting()
+    actingToSave.name = this.acting.name;
+
+    var coordinatesPoint = new Array<number>();
+
+    coordinatesPoint[0] = parseFloat(this.acting.lat);
+    coordinatesPoint[1] = parseFloat(this.acting.lng);
+
+    var point = new Point();
+    point.type="Point";
+    point.coordinates = coordinatesPoint;
+
+
+    actingToSave.address = point;
+
+
+    actingToSave.agent = new Agent();
+    actingToSave.agent.id = 4;
+
+    console.log('actingToSave', actingToSave);
+
+    this.actingService.save(actingToSave).then( resp => {
+      console.log('actingToSave resp', resp);
+    });
+
+
+    this.acting = new Acting();
+
   }
 }
