@@ -17,9 +17,10 @@
             </agm-info-window>
 
             </agm-marker>
-            <agm-circle *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.long" [radius]="622222" fillColor="green"></agm-circle>
+            <agm-circle *ngFor="let marker of markers" [label]="marker.title" [latitude]="marker.lat" [longitude]="marker.long" [radius]="3000" fillColor="green"></agm-circle>
 
-            <agm-circle *ngIf="showFire"  [latitude]="fire.lat" [longitude]="fire.long" [radius]="222222" fillColor="red"></agm-circle>
+            <agm-circle *ngIf="showFire"  [latitude]="fire.lat" [longitude]="fire.long" [radius]="3000" fillColor="red"></agm-circle>
+            <!-- <agm-marker *ngIf="showFire"  [latitude]="fire.lat" [longitude]="fire.long"></agm-marker> -->
 
 
         </agm-map>
